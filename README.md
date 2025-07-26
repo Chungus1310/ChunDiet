@@ -11,6 +11,7 @@
 [![Flask](https://img.shields.io/badge/Flask-2.0+-red.svg)](https://flask.palletsprojects.com/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
 [![Gemini AI](https://img.shields.io/badge/Powered%20by-Gemini%20AI-orange.svg)](https://ai.google.dev/)
+[![Windows Release](https://img.shields.io/badge/Windows-Executable-blue.svg)](https://github.com/Chungus1310/ChunDiet/releases/download/windows_releaseV0/ChunDiet.exe)
 
 *Transform your relationship with food through intelligent nutrition analysis and personalized recommendations*
 
@@ -94,7 +95,17 @@ ChunDiet is your **intelligent nutrition companion** that leverages Google's Gem
 
 > **Want to try ChunDiet right now?** Choose your preferred method:
 
-### 🐳 Option 1: Docker (Recommended)
+### 🪟 Option 1: Windows Executable (Easiest!)
+```bash
+# Download and run - no installation needed!
+1. Download: https://github.com/Chungus1310/ChunDiet/releases/download/windows_releaseV0/ChunDiet.exe
+2. Double-click ChunDiet.exe
+3. Enter your Gemini API key when prompted
+4. Browser opens automatically at http://localhost:5000 🎉
+# Data persists in %appdata%/ChunDiet
+```
+
+### 🐳 Option 2: Docker (Cross-platform)
 ```bash
 # Clone and run with Docker
 git clone https://github.com/Chungus1310/ChunDiet.git
@@ -104,7 +115,7 @@ docker run -p 5000:5000 -e GEMINI_API_KEY="your-api-key-here" chundiet
 # Visit http://localhost:5000 🎉
 ```
 
-### 🐍 Option 2: Local Python Setup
+### 🐍 Option 3: Local Python Setup
 ```bash
 # Traditional setup
 git clone https://github.com/Chungus1310/ChunDiet.git
@@ -197,14 +208,39 @@ graph TB
 
 ### 📋 Prerequisites
 
-- **Python 3.8+** 🐍 or **Docker** 🐳
+- **Windows 10+** 🪟 (for executable) or **Python 3.8+** 🐍 or **Docker** 🐳
 - **Gemini API Key** 🔑 ([Get yours free](https://aistudio.google.com/apikey))
 - **Modern Web Browser** 🌐
 
 ### 🔧 Development Setup Options
 
 <details>
-<summary>🐳 Docker Setup (Recommended)</summary>
+<summary>🪟 Windows Executable (Recommended for Windows Users)</summary>
+
+1. **Download the Executable**
+   - Visit: [ChunDiet Windows Release](https://github.com/Chungus1310/ChunDiet/releases/download/windows_releaseV0/ChunDiet.exe)
+   - Download `ChunDiet.exe` (no installation required!)
+
+2. **Run the Application**
+   - Double-click `ChunDiet.exe`
+   - A console window will open showing server logs
+   - Your browser will automatically open to `http://localhost:5000`
+
+3. **Setup API Key**
+   - Enter your Gemini API key in the settings when prompted
+   - Your data is automatically saved to `%appdata%/ChunDiet`
+
+4. **Using the Application**
+   - Keep the console window open (server logs display here)
+   - Closing the console window will stop the application
+   - Your nutrition data persists between sessions
+
+> **Note**: The executable includes the complete Flask server and opens your browser automatically. All backend activity is logged in the console for transparency.
+
+</details>
+
+<details>
+<summary>🐳 Docker Setup</summary>
 
 1. **Clone the Repository**
    ```bash
@@ -277,6 +313,33 @@ graph TB
 
 7. **Open Browser**
    Navigate to `http://localhost:5000` and start your nutrition journey! 🎉
+
+</details>
+
+<details>
+<summary>🏗️ Building Windows Executable (For Developers)</summary>
+
+If you want to build the executable yourself:
+
+1. **Setup Development Environment**
+   ```bash
+   git clone https://github.com/Chungus1310/ChunDiet.git
+   cd ChunDiet
+   pip install -r backend/requirements.txt
+   pip install pyinstaller
+   ```
+
+2. **Build Executable**
+   ```bash
+   # Use the provided build script
+   build.bat
+   
+   # Or manually with PyInstaller
+   pyinstaller --onefile --add-data "frontend;frontend" --add-data "backend;backend" run.py
+   ```
+
+3. **Find Your Executable**
+   The built executable will be in the `dist/` directory.
 
 </details>
 
@@ -467,9 +530,16 @@ We'd love your help making ChunDiet even better! Here's how you can contribute:
 </details>
 
 <details>
-<summary><strong>Q: Should I use Docker or Python setup?</strong></summary>
+<summary><strong>Q: Should I use the Windows executable or other setup methods?</strong></summary>
 
-**A:** Docker is recommended for easier deployment and consistent environments. Use Python setup if you want to modify the code or don't have Docker installed.
+**A:** The Windows executable is the easiest option for Windows users - no installation required! Use Docker for cross-platform deployment or Python setup if you want to modify the code.
+
+</details>
+
+<details>
+<summary><strong>Q: Where is my data stored when using the Windows executable?</strong></summary>
+
+**A:** Your nutrition data is automatically saved to `%appdata%/ChunDiet` on Windows, ensuring it persists between sessions and updates.
 
 </details>
 
