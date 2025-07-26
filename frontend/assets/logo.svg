@@ -1,0 +1,46 @@
+<svg width="160" height="48" viewBox="0 0 160 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoLeaf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50"/>
+      <stop offset="100%" style="stop-color:#2E7D32"/>
+    </linearGradient>
+    <linearGradient id="logoAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35"/>
+      <stop offset="100%" style="stop-color:#FF8A50"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2E7D32"/>
+      <stop offset="100%" style="stop-color:#4CAF50"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Logo icon container -->
+  <g transform="translate(4, 6)">
+    <!-- Main leaf shape -->
+    <path d="M18 4C24 4 30 7 30 14C30 21 24 24 18 24C12 24 6 21 6 14C6 7 12 4 18 4Z" fill="url(#logoLeaf)"/>
+    
+    <!-- Leaf details -->
+    <path d="M18 4L18 24" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M18 8C15 11 12 14 9 17" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M18 8C21 11 24 14 27 17" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+    
+    <!-- Nutrition center -->
+    <circle cx="18" cy="14" r="4" fill="white" opacity="0.95"/>
+    <circle cx="18" cy="14" r="2.5" fill="url(#logoAccent)"/>
+    
+    <!-- Micro nutrients dots -->
+    <circle cx="14" cy="10" r="1" fill="white" opacity="0.8"/>
+    <circle cx="22" cy="18" r="1" fill="white" opacity="0.8"/>
+    <circle cx="22" cy="10" r="0.8" fill="url(#logoAccent)" opacity="0.7"/>
+  </g>
+  
+  <!-- Text logo -->
+  <g transform="translate(44, 0)">
+    <!-- ChunDiet text -->
+    <text x="0" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="url(#textGrad)" letter-spacing="-0.5px">Chun</text>
+    <text x="60" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#4CAF50">Diet</text>
+    
+    <!-- Tagline -->
+    <text x="0" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="400" fill="#757575" letter-spacing="0.5px">NUTRITION TRACKING</text>
+  </g>
+</svg>

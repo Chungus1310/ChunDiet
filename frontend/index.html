@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChunDiet - AI-Powered Nutrition Tracking & Planning</title>
+    <meta name="description" content="ChunDiet - Your personal AI nutritionist. Track meals, analyze nutrition, and get personalized recommendations with Chun, your expert nutrition coach.">
+    <meta name="keywords" content="nutrition tracking, AI nutritionist, meal planning, diet analysis, health tracking">
+    <meta name="author" content="ChunDiet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Theme and PWA -->
+    <meta name="theme-color" content="#2ECC71">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ChunDiet">
+</head>
+<body>
+    <!-- Include SVG Icons -->
+    <div style="display: none;" id="svg-icons"></div>
+    <script>
+        // Load SVG icons inline for better compatibility
+        fetch('assets/icons.svg')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('svg-icons').innerHTML = data;
+            })
+            .catch(error => console.log('Icons loaded from fallback'));
+    </script>
+
+    <!-- Live Animated Background -->
+    <div class="bg-nutrition-flow">
+        <div class="liquid-waves"></div>
+        <div class="nutrient-particles"></div>
+    </div>
+
+    <!-- App Container -->
+    <div id="app" class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand-section">
+                    <img src="assets/logo.svg" alt="ChunDiet" class="brand-logo">
+                    <div class="brand-tagline">AI-Powered Nutrition</div>
+                </div>
+                
+                <div class="user-section">
+                    <div class="user-avatar" id="userAvatar">
+                        <img src="assets/user-avatar.svg" alt="User Avatar">
+                    </div>
+                    <div class="user-info">
+                        <h3 class="user-name" id="userName">Welcome!</h3>
+                        <span class="user-status">Getting healthier daily</span>
+                    </div>
+                </div>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item active" data-page="home">
+                    <div class="nav-icon">🏠</div>
+                    <span class="nav-text">Dashboard</span>
+                    <div class="nav-indicator"></div>
+                </li>
+                <li class="nav-item" data-page="history">
+                    <div class="nav-icon">📊</div>
+                    <span class="nav-text">History</span>
+                    <div class="nav-indicator"></div>
+                </li>
+                <li class="nav-item" data-page="planner">
+                    <div class="nav-icon">🎯</div>
+                    <span class="nav-text">AI Planner</span>
+                    <div class="nav-indicator"></div>
+                </li>
+                <li class="nav-item" data-page="settings">
+                    <div class="nav-icon">⚙️</div>
+                    <span class="nav-text">Settings</span>
+                    <div class="nav-indicator"></div>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="daily-stats" id="dailyStats">
+                    <div class="stats-header">
+                        <svg class="stats-icon" width="16" height="16">
+                            <use href="#icon-analytics"></use>
+                        </svg>
+                        <span>Today's Progress</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="todayCalories">0</span>
+                        <span class="stat-label">calories consumed</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="calorieProgress"></div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-branding">
+                    <span class="powered-by">Powered by AI Nutritionist</span>
+                    <strong class="chun-brand">Chun</strong>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content" id="mainContent">
+            <!-- Loading State -->
+            <div class="loading-overlay" id="loadingOverlay">
+                <div class="loading-spinner"></div>
+                <p>Analyzing nutrition...</p>
+            </div>
+
+            <!-- Home Page -->
+            <div class="page" id="homePage">
+                <header class="page-header">
+                    <div class="page-title-section">
+                        <svg class="page-icon" width="32" height="32">
+                            <use href="#icon-nutrition"></use>
+                        </svg>
+                        <div>
+                            <h1>Nutrition Dashboard</h1>
+                            <p class="page-subtitle">Track your daily nutrition journey with AI insights</p>
+                        </div>
+                    </div>
+                </header>
+                
+                <section class="meal-input-section">
+                    <form class="meal-form" id="mealForm">
+                        <div class="input-group">
+                            <textarea 
+                                class="liquid-input meal-description" 
+                                id="mealDescription"
+                                placeholder="Describe your meal... (e.g., 'I had a grilled chicken salad with olive oil dressing')"
+                                rows="3"
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <div class="input-group time-group">
+                            <label for="mealTime">When did you eat this?</label>
+                            <input 
+                                type="datetime-local" 
+                                class="liquid-input" 
+                                id="mealTime"
+                            >
+                        </div>
+                        
+                        <button type="submit" class="btn-primary analyze-btn">
+                            <span>🔮</span>
+                            Analyze Nutrition
+                        </button>
+                    </form>
+                </section>
+                
+                <section class="daily-progress" id="dailyProgress">
+                    <!-- Dynamic content populated by JS -->
+                </section>
+                
+                <section class="recent-meals" id="recentMeals">
+                    <h3>Today's Meals</h3>
+                    <div class="meals-grid" id="mealsGrid">
+                        <!-- Dynamic content populated by JS -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- History Page -->
+            <div class="page hidden" id="historyPage">
+                <header class="page-header">
+                    <div class="page-title-section">
+                        <svg class="page-icon" width="32" height="32">
+                            <use href="#icon-analytics"></use>
+                        </svg>
+                        <div>
+                            <h1>Nutrition History</h1>
+                            <p class="page-subtitle">Analyze your nutrition patterns and progress over time</p>
+                        </div>
+                    </div>
+                </header>
+                
+                <div class="history-timeline" id="historyTimeline">
+                    <!-- Dynamic content populated by JS -->
+                </div>
+            </div>
+
+            <!-- Planner Page -->
+            <div class="page hidden" id="plannerPage">
+                <header class="page-header">
+                    <div class="page-title-section">
+                        <svg class="page-icon" width="32" height="32">
+                            <use href="#icon-planner"></use>
+                        </svg>
+                        <div>
+                            <h1>AI Nutrition Planner</h1>
+                            <p class="page-subtitle">Get personalized recommendations from Chun, your AI nutritionist</p>
+                        </div>
+                    </div>
+                    <button class="btn-primary refresh-plan-btn" id="refreshPlanBtn">
+                        <svg width="16" height="16" style="margin-right: 8px;">
+                            <use href="#icon-nutrition"></use>
+                        </svg>
+                        Generate New Plan
+                    </button>
+                </header>
+                
+                <div class="planner-content">
+                    <section class="recommendations-section" id="recommendationsSection">
+                        <!-- Dynamic content populated by JS -->
+                    </section>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div class="page hidden" id="settingsPage">
+                <header class="page-header">
+                    <div class="page-title-section">
+                        <svg class="page-icon" width="32" height="32">
+                            <use href="#icon-settings"></use>
+                        </svg>
+                        <div>
+                            <h1>Settings & Preferences</h1>
+                            <p class="page-subtitle">Customize ChunDiet to match your lifestyle and goals</p>
+                        </div>
+                    </div>
+                </header>
+                
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>🔑 API Configuration</h3>
+                        <form id="apiSettingsForm">
+                            <div class="input-group">
+                                <label for="geminiKey">Gemini API Key</label>
+                                <input type="password" class="liquid-input" id="geminiKey" placeholder="Enter your Gemini API key">
+                                <button type="button" class="btn-secondary" id="addKeyBtn">Add Key</button>
+                            </div>
+                            <div class="api-keys-list" id="apiKeysList">
+                                <!-- Dynamic key list -->
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>🧠 AI Configuration</h3>
+                        <form id="aiSettingsForm">
+                            <div class="input-group">
+                                <label for="temperature">Temperature: <span id="tempValue">0.5</span></label>
+                                <input type="range" id="temperature" min="0" max="1" step="0.1" value="0.5" class="liquid-slider">
+                            </div>
+                            <div class="input-group">
+                                <label for="topP">Top-p: <span id="topPValue">0.9</span></label>
+                                <input type="range" id="topP" min="0" max="1" step="0.1" value="0.9" class="liquid-slider">
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>👤 Profile</h3>
+                        <form id="profileForm">
+                            <div class="input-group">
+                                <label for="age">Age</label>
+                                <input type="number" class="liquid-input" id="age" min="1" max="120">
+                            </div>
+                            <div class="input-group">
+                                <label for="weight">Weight (kg)</label>
+                                <input type="number" class="liquid-input" id="weight" min="1" max="500" step="0.1">
+                            </div>
+                            <div class="input-group">
+                                <label for="activityLevel">Activity Level</label>
+                                <select class="liquid-input" id="activityLevel">
+                                    <option value="sedentary">Sedentary</option>
+                                    <option value="light">Light Activity</option>
+                                    <option value="moderate">Moderate Activity</option>
+                                    <option value="high">High Activity</option>
+                                    <option value="extreme">Extreme Activity</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary">Save Profile</button>
+                        </form>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>🎯 Goals</h3>
+                        <form id="goalsForm">
+                            <div class="input-group">
+                                <label for="goalDescription">Your Goal (optional)</label>
+                                <input type="text" class="liquid-input" id="goalDescription" placeholder="e.g., lose weight, gain muscle, maintain health">
+                            </div>
+                            <div class="goals-sliders">
+                                <div class="input-group">
+                                    <label for="calorieGoal">Daily Calories: <span id="calorieGoalValue">Not set</span></label>
+                                    <input type="range" id="calorieGoal" min="1200" max="4000" step="50" class="liquid-slider">
+                                    <button type="button" class="btn-clear" id="clearCalorieGoal">Clear</button>
+                                </div>
+                                <div class="input-group">
+                                    <label for="proteinGoal">Daily Protein (g): <span id="proteinGoalValue">Not set</span></label>
+                                    <input type="range" id="proteinGoal" min="30" max="300" step="5" class="liquid-slider">
+                                    <button type="button" class="btn-clear" id="clearProteinGoal">Clear</button>
+                                </div>
+                                <div class="input-group">
+                                    <label for="carbsGoal">Daily Carbs (g): <span id="carbsGoalValue">Not set</span></label>
+                                    <input type="range" id="carbsGoal" min="50" max="500" step="10" class="liquid-slider">
+                                    <button type="button" class="btn-clear" id="clearCarbsGoal">Clear</button>
+                                </div>
+                                <div class="input-group">
+                                    <label for="fatGoal">Daily Fat (g): <span id="fatGoalValue">Not set</span></label>
+                                    <input type="range" id="fatGoal" min="20" max="200" step="5" class="liquid-slider">
+                                    <button type="button" class="btn-clear" id="clearFatGoal">Clear</button>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">Save Goals</button>
+                        </form>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>🎨 Preferences</h3>
+                        <div class="preference-items">
+                            <div class="preference-item">
+                                <label for="themeToggle">Dark Mode</label>
+                                <input type="checkbox" id="themeToggle" class="liquid-toggle" checked>
+                            </div>
+                            <div class="preference-item">
+                                <label for="notificationsToggle">Notifications</label>
+                                <input type="checkbox" id="notificationsToggle" class="liquid-toggle" checked>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Success/Error Notifications -->
+    <div class="notification-container" id="notificationContainer">
+        <!-- Dynamic notifications -->
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/animations.js"></script>
+    <script src="assets/app.js"></script>
+    <script src="assets/mobile.js"></script>
+</body>
+</html>

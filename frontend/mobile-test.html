@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChunDiet Mobile Test</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Test-specific styles */
+        .test-container {
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .test-section {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .mobile-preview {
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            max-width: 375px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <h1>ChunDiet Mobile UI Test</h1>
+
+        <div class="test-section">
+            <div class="test-title">Mobile Header Test</div>
+            <div class="mobile-header">
+                <h1>ChunDiet</h1>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Mobile Navigation Test</div>
+            <div class="mobile-nav">
+                <div class="mobile-nav-item active">
+                    <div class="nav-icon">🏠</div>
+                    <small>Home</small>
+                </div>
+                <div class="mobile-nav-item">
+                    <div class="nav-icon">📊</div>
+                    <small>History</small>
+                </div>
+                <div class="mobile-nav-item">
+                    <div class="nav-icon">🎯</div>
+                    <small>Planner</small>
+                </div>
+                <div class="mobile-nav-item">
+                    <div class="nav-icon">⚙️</div>
+                    <small>Settings</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Mobile Stats Test</div>
+            <div class="mobile-stats">
+                <div class="mobile-stat">
+                    <span class="mobile-stat-value">1,850</span>
+                    <span class="mobile-stat-label">Calories</span>
+                </div>
+                <div class="mobile-stat">
+                    <span class="mobile-stat-value">85g</span>
+                    <span class="mobile-stat-label">Protein</span>
+                </div>
+                <div class="mobile-stat">
+                    <span class="mobile-stat-value">220g</span>
+                    <span class="mobile-stat-label">Carbs</span>
+                </div>
+                <div class="mobile-stat">
+                    <span class="mobile-stat-value">65g</span>
+                    <span class="mobile-stat-label">Fat</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Mobile Meal Entry Test</div>
+            <div class="mobile-meal-entry">
+                <textarea class="mobile-meal-input" placeholder="Describe your meal..."></textarea>
+                <button class="mobile-add-btn">
+                    <span>🔮</span>
+                    Analyze Nutrition
+                </button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Mobile Meal Items Test</div>
+            <div class="mobile-meal-item">
+                <div class="mobile-meal-info">
+                    <h4>Grilled Chicken Salad</h4>
+                    <small>450 kcal • 2:30 PM</small>
+                </div>
+                <div class="mobile-meal-actions">
+                    <button class="mobile-action-btn mobile-delete-btn">🗑️</button>
+                </div>
+            </div>
+
+            <div class="mobile-meal-item">
+                <div class="mobile-meal-info">
+                    <h4>Greek Yogurt with Berries</h4>
+                    <small>180 kcal • 10:15 AM</small>
+                </div>
+                <div class="mobile-meal-actions">
+                    <button class="mobile-action-btn mobile-delete-btn">🗑️</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Mobile Recommendations Test</div>
+            <div class="mobile-recommendation">
+                <h4>💡 Nutrition Tip</h4>
+                <p>Consider adding more leafy greens to increase your vitamin K intake. Spinach or kale would be
+                    excellent choices for your next meal.</p>
+            </div>
+
+            <div class="mobile-analysis">
+                <h4>📊 Today's Analysis</h4>
+                <p>You're doing great with protein intake! Your meals show a good balance of macronutrients. Consider
+                    adding more fiber-rich foods for optimal digestion.</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Mobile FAB Test</div>
+            <button class="mobile-fab">➕</button>
+        </div>
+    </div>
+
+    <script>
+        // Simple test interactions
+        document.querySelectorAll('.mobile-nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.mobile-nav-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+
+        document.querySelector('.mobile-fab').addEventListener('click', () => {
+            alert('FAB clicked! This would focus on meal input in the real app.');
+        });
+
+        document.querySelectorAll('.mobile-delete-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (confirm('Delete this meal?')) {
+                    btn.closest('.mobile-meal-item').style.opacity = '0.5';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
