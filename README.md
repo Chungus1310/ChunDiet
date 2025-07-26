@@ -100,7 +100,7 @@ ChunDiet is your **intelligent nutrition companion** that leverages Google's Gem
 # Download and run - no installation needed!
 1. Download: https://github.com/Chungus1310/ChunDiet/releases/download/windows_releaseV0/ChunDiet.exe
 2. Double-click ChunDiet.exe
-3. Enter your Gemini API key when prompted
+3. Enter your Gemini API key in settings
 4. Browser opens automatically at http://localhost:5000 🎉
 # Data persists in %appdata%/ChunDiet
 ```
