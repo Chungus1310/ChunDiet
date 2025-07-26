@@ -23,7 +23,7 @@
 
 ## ✨ What is ChunDiet?
 
-ChunDiet is your **intelligent nutrition companion** that leverages Google's Gemini AI to analyze your meals, track nutritional intake, and provide personalized recommendations. Meet **Chun**, your AI nutritionist with over 15 years of virtual experience in food analysis and dietary guidance!
+ChunDiet is your **intelligent nutrition companion** that leverages Google's Gemini AI to analyze your meals, track nutritional intake, and provide personalized recommendations.
 
 ### 🎯 Why ChunDiet?
 
