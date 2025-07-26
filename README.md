@@ -198,7 +198,7 @@ graph TB
 ### 📋 Prerequisites
 
 - **Python 3.8+** 🐍 or **Docker** 🐳
-- **Gemini API Key** 🔑 ([Get yours free](https://ai.google.dev/))
+- **Gemini API Key** 🔑 ([Get yours free](https://aistudio.google.com/apikey))
 - **Modern Web Browser** 🌐
 
 ### 🔧 Development Setup Options
